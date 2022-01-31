@@ -15,7 +15,7 @@ public class Main {
 
         try (Scanner scan = new Scanner(System.in)) {
 
-            System.out.println("Enter command or enter Q or q to stop the peogram");
+            System.out.println("Enter command or enter Q or q to stop the program");
 
             String userInput;
 
