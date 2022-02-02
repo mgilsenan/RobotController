@@ -10,7 +10,7 @@ public class Main {
 
     static RobotController robotController;
     public static void main(String[] args) {
-        //System.out.println("Hello world "+ args[0] );
+       
         RobotController robotController = new RobotController();
 
         try (Scanner scan = new Scanner(System.in)) {
