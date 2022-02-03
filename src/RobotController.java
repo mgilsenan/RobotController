@@ -121,15 +121,17 @@ public class RobotController {
         }
     }
 
+    //R3
     private void penUp() {
     	pen = penState.Up;
     }
 
+    //R4
     private void penDown() {
     	pen = penState.Down;
     }
 
-    //R3
+    //R5
     private void moveRight() {
     	switch (facingDirection) {
 
@@ -154,7 +156,7 @@ public class RobotController {
     	}
     }
 
-    //R4
+    //R6
     private void moveLeft() {
     	switch (facingDirection) {
 
@@ -186,7 +188,7 @@ public class RobotController {
         modifyingCoordinates(stepPositions);
     }
 
-    //R5
+    //R7
     private void modifyingFloor(int stepPositions) {
         if (pen == penState.Down) {
             for (int i = 0; i <= stepPositions; i++) {
@@ -216,8 +218,6 @@ public class RobotController {
         }
     }
 
-    
-    //R6
     private void modifyingCoordinates(int stepPositions) {
         switch (facingDirection) {
             
@@ -250,6 +250,7 @@ public class RobotController {
         FloorTrackerColumn = 0;
     } 
 
+    //R8
     private void printPosition() {
         System.out.println("Position: "+ FloorTrackerColumn +", " + Math.abs(FloorTrackerRow - floor.length + 1) + " - Pen: " + pen + " - Facing: " + facingDirection);
     }
