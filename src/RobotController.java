@@ -251,7 +251,7 @@ public class RobotController {
     } 
 
     //R8
-    private void printPosition() {
+    public void printPosition() {
         System.out.println("Position: "+ FloorTrackerColumn +", " + Math.abs(FloorTrackerRow - floor.length + 1) + " - Pen: " + pen + " - Facing: " + facingDirection);
     }
     
