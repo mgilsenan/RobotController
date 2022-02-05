@@ -26,7 +26,7 @@ class RobotControllerTest {
         System.setOut(firstOuput);
     }
 
-	//Requiement 1 Completed
+	//Requirement 1 Completed
 	@Test
 	void canMoveForwardTest() {
 		RobotController rc = new RobotController();
@@ -84,32 +84,6 @@ class RobotControllerTest {
 		rc.executeCommands("D");
 		assertEquals("DOWN", rc.getPenState());
 	}
-	
-	 
-	// @Test 
-	// void testTurnRight() { 
-	// 	RobotController rc = new RobotController();
-	// 	rc.executeCommands("I 10");	
-	// 	rc.executeCommands("R");
-	// 	assertEquals("EAST", rc.getFacingDirection());
-	// }
-	
-	// @Test
-	// void testTurnLef() {
-	// 	RobotController rc = new RobotController();
-	// 	rc.executeCommands("I 10");	
-	// 	rc.executeCommands("L");
-	// 	assertEquals("WEST", rc.getFacingDirection());
-	// }
-	
-	// @Test
-	// void testMoveForward() {
-	// 	RobotController rc = new RobotController();
-	// 	rc.executeCommands("I 10");	
-	// 	rc.executeCommands("M 5");
-	// 	assertEquals(4, rc.getXCoord());
-	// 	assertEquals(0, rc.getYCoord());
-	// }
 	
 	//Requirement 5 Completed
 	@Test
@@ -192,4 +166,38 @@ class RobotControllerTest {
 		rc.executeCommands("L");
 		assertEquals("EAST", rc.getFacingDirection());
 	}
+
+	//Requirement 7 Completed
+	@Test
+	void modifyingFloorNorthFacingTest() {
+		
+	}
+	
+	@Test
+	void modifyingFloorEastFacingTest() {
+		
+	}
+	
+	@Test
+	void modifyingFloorSouthFacingTest() {
+		
+	}
+	
+	@Test
+	void modifyingFloorWestFacingTest() {
+		
+	}
+	
+	//Requirement 8 Completed
+	@Test
+	void printPositionStartingTest() {
+		
+	}
+	
+	@Test
+	void printPositionAfterMovingRobotTest() {
+		
+	}
+	
 }
+
