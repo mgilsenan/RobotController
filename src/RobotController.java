@@ -83,7 +83,7 @@ public class RobotController {
     }
 
     //R1
-    private boolean canMoveForward(int stepPositions) {
+    public boolean canMoveForward(int stepPositions) {
         
         if((FloorTrackerColumn + stepPositions >= floor.length)&&(facingDirection == direction.East)){
             return false;
