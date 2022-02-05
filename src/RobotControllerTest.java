@@ -66,7 +66,18 @@ class RobotControllerTest {
 		rc.executeCommands("L");
 		assertEquals(false, rc.canMoveForward(3));
 	}
+	
+	//Requirement 2 Completed
+	@Test
+	void printFloorEmptyTest() {
+		
+	}
 
+	@Test
+	void printFloorWithShapeTest() {
+		
+	}
+	
 	//Requirement 3 Completed
 	@Test
 	void penUpTest() {
