@@ -15,7 +15,7 @@ public class Main {
 
         try (Scanner scan = new Scanner(System.in)) {
 
-            System.out.println("Enter command or enter Q or q to stop the program");
+            robotController.printInstructions();
 
             String userInput;
 
@@ -32,4 +32,5 @@ public class Main {
         }
     
     }
+    
 }

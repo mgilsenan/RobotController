@@ -12,6 +12,10 @@ public class RobotController {
     private int FloorTrackerRow;
     private int FloorTrackerColumn;
 
+    public int[][] getFloor() {
+        return Arrays.copyOf(floor, floor.length);
+    }
+
     public RobotController(){
         pen = penState.Up;
         facingDirection = direction.North;
@@ -40,11 +44,7 @@ public class RobotController {
         }
         else if (command.equals("M") || command.equals("m")){
             //move forward
-            try {
-                maneuverRobot(Integer.parseInt(commands[1]));
-            } catch (Exception e) {
-                System.out.println("Did not enter a value");
-            }
+            move(commands);
            
         }
         else if (command.equals("P") || command.equals("p")){
@@ -56,13 +56,32 @@ public class RobotController {
         	printPosition();
         }
         else if (command.equals("I") || command.equals("i")){
-            try {
-                initializeFloor(Integer.parseInt(commands[1]));
-            } catch (Exception e) {
-                System.out.println("Did not enter a value");
-            }
+            intialize(commands);
+        }
+        else{
+            invalidCommand();
         }
    }
+
+    private void intialize(String[] commands) {
+        try {
+            initializeFloor(Integer.parseInt(commands[1]));
+        } catch (Exception e) {
+            System.out.println("Did not enter a value");
+        }
+    }
+
+    private void move(String[] commands) {
+        try {
+            maneuverRobot(Integer.parseInt(commands[1]));
+        } catch (Exception e) {
+            System.out.println("Did not enter a value");
+        }
+    }
+
+    private void invalidCommand() {
+        System.out.println("Invalid command: This command does not exists");
+    }
 
     private void maneuverRobot(int steps) {
     	while (true) {
@@ -243,6 +262,11 @@ public class RobotController {
     }
 
     private void initializeFloor(int arraySize){
+        if(arraySize <= 0){
+            System.out.println("Cannot initialize array, enter a value greater than zero");
+            return;
+        }
+
         this.floor = new int[arraySize][arraySize];
 
         FloorTrackerRow = floor.length - 1;
@@ -269,6 +293,18 @@ public class RobotController {
     
     public int getYCoord() {
     	return FloorTrackerColumn;
+    }
+
+    public void printInstructions() {
+        System.out.println("Enter command or enter Q or q to stop the program or enter the following accepted commands"+"\n"
+        +"[U|u] for Pen up "+"\n"
+        +"[D|d] for Pen down "+"\n"
+        +"[R|r] to Turn right "+"\n"
+        +"[L|l] to Turn left "+"\n"
+        +"[M s|m s] to Move forward s spaces "+"\n"
+        +"[P|p] Print the N by N array and display the indices"+"\n"
+        +"[C|c] Print current position of the pen and whether it is up or down and its facing direction"+"\n"
+        +"[I n|i n] Initialize the system: The values of the array floor are zeros and the robot is back to [0, 0], pen up and facing north. n size of the array, an integer greater than zero ");
     }
 
 }

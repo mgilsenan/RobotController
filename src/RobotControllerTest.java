@@ -2,6 +2,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.Arrays;
 
 import org.junit.After;
 import org.junit.Before;
@@ -26,7 +27,79 @@ class RobotControllerTest {
         System.setOut(firstOuput);
     }
 
-	//Requirement 1 Completed
+	@Test
+	void printInstructionTest(){
+		RobotController rc = new RobotController();
+		var expected = "Enter command or enter Q or q to stop the program or enter the following accepted commands"+"\n"
+        +"[U|u] for Pen up "+"\n"
+        +"[D|d] for Pen down "+"\n"
+        +"[R|r] to Turn right "+"\n"
+        +"[L|l] to Turn left "+"\n"
+        +"[M s|m s] to Move forward s spaces "+"\n"
+        +"[P|p] Print the N by N array and display the indices"+"\n"
+        +"[C|c] Print current position of the pen and whether it is up or down and its facing direction"+"\n"
+        +"[I n|i n] Initialize the system: The values of the array floor are zeros and the robot is back to [0, 0], pen up and facing north. n size of the array, an integer greater than zero ";
+		rc.printInstructions();
+		assertEquals(expected.strip(), ouput.toString().strip());
+	}
+
+	@Test
+	void invalidCommandTest(){
+		RobotController rc = new RobotController();
+		rc.executeCommands("S 10");	
+		var expected = "Invalid command: This command does not exists";
+		assertEquals(expected.strip(), ouput.toString().strip());
+	}
+
+	@Test
+	void commandWithNoSpaceTest(){
+		RobotController rc = new RobotController();
+		rc.executeCommands("M10");	
+		var expected = "Invalid command: This command does not exists";
+		assertEquals(expected.strip(), ouput.toString().strip());
+	}
+
+	@Test
+	void initializeFloorTest(){
+		 RobotController rc = new RobotController();
+		 rc.executeCommands("I 3");	
+		var arraySize = 3;
+		int[][] expected = new int[arraySize][arraySize];
+		assertArrayEquals(expected, rc.getFloor());
+	}
+
+	@Test
+	void initializeCommandWithNoValueTest(){
+		RobotController rc = new RobotController();
+		rc.executeCommands("I ");	
+		var expected = "Did not enter a value";
+		assertEquals(expected.strip(), ouput.toString().strip());
+	}
+
+	@Test
+	void initializeCommandInvalidSizeTest(){
+		RobotController rc = new RobotController();
+		rc.executeCommands("I 0");	
+		var expected = "Cannot initialize array, enter a value greater than zero";
+		assertEquals(expected.strip(), ouput.toString().strip());
+	}
+
+	@Test
+	void moveCommandWithNoValueTest(){
+		RobotController rc = new RobotController();
+		rc.executeCommands("M ");	
+		var expected = "Did not enter a value";
+		assertEquals(expected.strip(), ouput.toString().strip());
+	}
+
+	@Test
+	void moveCommandInvalidStepsTest(){
+		RobotController rc = new RobotController();
+		rc.executeCommands("M 0");	
+		var expected = "Did not move forward, enter a value greater than zero";
+		assertEquals(expected.strip(), ouput.toString().strip());
+	}
+
 	@Test
 	void canMoveForwardTest() {
 		RobotController rc = new RobotController();
@@ -67,7 +140,6 @@ class RobotControllerTest {
 		assertEquals(false, rc.canMoveForward(3));
 	}
 	
-	//Requirement 2 Completed
 	@Test
 	void printFloorEmptyTest() {
 		RobotController rc = new RobotController();
@@ -95,7 +167,6 @@ class RobotControllerTest {
         }
 	}
 	
-	//Requirement 3 Completed
 	@Test
 	void penUpTest() {
 		RobotController rc = new RobotController();
@@ -104,7 +175,6 @@ class RobotControllerTest {
 		assertEquals("UP", rc.getPenState());
 	}
 
-	//Requirement 4 Completed
 	@Test
 	void penDownTest() {
 		RobotController rc = new RobotController();
@@ -113,7 +183,6 @@ class RobotControllerTest {
 		assertEquals("DOWN", rc.getPenState());
 	}
 	
-	//Requirement 5 Completed
 	@Test
 	void moveRightFacingEastTest() {
 		RobotController rc = new RobotController();
@@ -154,7 +223,6 @@ class RobotControllerTest {
 		assertEquals("WEST", rc.getFacingDirection());
 	}
 
-	//Requirement 6 Completed
 	@Test
 	void moveLeftFacingEastTest() {
 		RobotController rc = new RobotController();
@@ -195,7 +263,6 @@ class RobotControllerTest {
 		assertEquals("EAST", rc.getFacingDirection());
 	}
 
-	//Requirement 7 Completed
 	@Test
 	void modifyingFloorNorthFacingTest() {
 		 RobotController rc = new RobotController();
@@ -260,7 +327,6 @@ class RobotControllerTest {
             assertEquals('*', lines[8].charAt(i));
 	}
 	
-	//Requirement 8 Completed
 	@Test
 	void printPositionStartingTest() {
 		RobotController rc = new RobotController();
