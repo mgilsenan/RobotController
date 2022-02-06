@@ -70,12 +70,29 @@ class RobotControllerTest {
 	//Requirement 2 Completed
 	@Test
 	void printFloorEmptyTest() {
-		
+		RobotController rc = new RobotController();
+        rc.executeCommands("I 10");
+        rc.executeCommands("P");
+        String printed = ouput.toString();
+        assertTrue(printed.matches("[\\n\\r ]+"));//string contains only \r \n and spaces (empty floor)
 	}
 
 	@Test
 	void printFloorWithShapeTest() {
-		
+		RobotController rc = new RobotController();
+        rc.executeCommands("I 10");
+        rc.executeCommands("D");//facing north
+        rc.executeCommands("M 9");
+        rc.executeCommands("R");//facing east
+        rc.executeCommands("M 9");
+        rc.executeCommands("P");
+        String lines[] = ouput.toString().split("\\r?\\n");
+        for (int i = 0; i < 10; i++)
+            lines[i] = lines[i].replaceAll("\\s+", "");//get rid of white spaces
+        for (int i = 0; i < 10; i++) {
+            assertEquals('*', lines[0].charAt(i));
+            assertEquals('*', lines[i].charAt(0));
+        }
 	}
 	
 	//Requirement 3 Completed
@@ -181,33 +198,85 @@ class RobotControllerTest {
 	//Requirement 7 Completed
 	@Test
 	void modifyingFloorNorthFacingTest() {
-		
+		 RobotController rc = new RobotController();
+        rc.executeCommands("I 10");
+        rc.executeCommands("D");
+        rc.executeCommands("M 9");
+        rc.executeCommands("P");
+        String lines[] = ouput.toString().split("\\r?\\n");
+        for (int i = 0; i < 10; i++)
+            assertEquals('*', lines[i].charAt(0));
 	}
 	
 	@Test
 	void modifyingFloorEastFacingTest() {
-		
+		RobotController rc = new RobotController();
+        rc.executeCommands("I 10");
+        rc.executeCommands("D");
+        rc.executeCommands("R");//facing east
+        rc.executeCommands("M 9");
+        rc.executeCommands("P");
+        String lines[] = ouput.toString().split("\\r?\\n");
+        for (int i = 0; i < 10; i++)
+            lines[i] = lines[i].replaceAll("\\s+", "");//get rid of white spaces
+        for (int i = 0; i < 10; i++)
+            assertEquals('*', lines[9].charAt(i));
 	}
 	
 	@Test
 	void modifyingFloorSouthFacingTest() {
-		
+		RobotController rc = new RobotController();
+        rc.executeCommands("I 10");
+        rc.executeCommands("D");//facing nord
+        rc.executeCommands("M 9");
+        rc.executeCommands("R");//facing east
+        rc.executeCommands("M 1");
+        rc.executeCommands("R");//facing south
+        rc.executeCommands("M 9");
+        rc.executeCommands("P");
+        String lines[] = ouput.toString().split("\\r?\\n");
+        for (int i = 0; i < 10; i++)
+            lines[i] = lines[i].replaceAll("\\s+", "");
+        for (int i = 1; i < 10; i++)
+            assertEquals('*', lines[i].charAt(1));
 	}
 	
 	@Test
 	void modifyingFloorWestFacingTest() {
-		
+		RobotController rc = new RobotController();
+        rc.executeCommands("I 10");
+        rc.executeCommands("D");
+        rc.executeCommands("R");//facing east
+        rc.executeCommands("M 9");
+        rc.executeCommands("L");//facing nord
+        rc.executeCommands("M 1");
+        rc.executeCommands("L");//facing west
+        rc.executeCommands("M 9");
+        rc.executeCommands("P");
+        String lines[] = ouput.toString().split("\\r?\\n");
+        for (int i = 0; i < 10; i++)
+            lines[i] = lines[i].replaceAll("\\s+", "");
+        for (int i = 1; i < 10; i++)
+            assertEquals('*', lines[8].charAt(i));
 	}
 	
 	//Requirement 8 Completed
 	@Test
 	void printPositionStartingTest() {
-		
+		RobotController rc = new RobotController();
+        rc.executeCommands("I 10");
+        rc.executeCommands("C");
+        assertEquals("Position: 0, 0 - Pen: Up - Facing: North\r\n".strip(), ouput.toString().strip());
 	}
 	
 	@Test
 	void printPositionAfterMovingRobotTest() {
-		
+		RobotController rc = new RobotController();
+        rc.executeCommands("I 10");
+        rc.executeCommands("D");
+        rc.executeCommands("M 4");
+        rc.executeCommands("C");
+        assertEquals("Position: 0, 4 - Pen: Down - Facing: North\r\n".strip(), ouput.toString().strip());
 	}
 	
 }
