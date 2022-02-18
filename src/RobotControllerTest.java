@@ -62,7 +62,8 @@ class RobotControllerTest {
 	@Test
 	void initializeFloorTest(){
 		 RobotController rc = new RobotController();
-		 rc.executeCommands("I 3");	
+		
+		 rc.executeCommands("i 3");	
 		var arraySize = 3;
 		int[][] expected = new int[arraySize][arraySize];
 		assertArrayEquals(expected, rc.getFloor());
@@ -104,7 +105,8 @@ class RobotControllerTest {
 	void moveCommandOutOfBoudariesTest(){
 		RobotController rc = new RobotController();
 		rc.executeCommands("I 3");
-		rc.executeCommands("M 4");	
+		
+		rc.executeCommands("m 4");
 		var expected = "outside the boundaries of the floor, enter a valid number";
 		assertEquals(expected.strip(), ouput.toString().strip());
 	}
@@ -129,7 +131,7 @@ class RobotControllerTest {
 		RobotController rc = new RobotController();
 		rc.executeCommands("I 3");		
 		rc.executeCommands("R");
-		rc.executeCommands("R");
+		rc.executeCommands("r");
 		assertEquals(false, rc.canMoveForward(3));
 	}
 
@@ -145,7 +147,7 @@ class RobotControllerTest {
 	void canMoveForwardFearthestWestTest() {
 		RobotController rc = new RobotController();
 		rc.executeCommands("I 10");		
-		rc.executeCommands("L");
+		rc.executeCommands("l");
 		assertEquals(false, rc.canMoveForward(3));
 	}
 	
@@ -166,7 +168,7 @@ class RobotControllerTest {
         rc.executeCommands("M 9");
         rc.executeCommands("R");//facing east
         rc.executeCommands("M 9");
-        rc.executeCommands("P");
+        rc.executeCommands("p");
         String lines[] = ouput.toString().split("\\r?\\n");
         for (int i = 0; i < 10; i++)
             lines[i] = lines[i].replaceAll("\\s+", "");//get rid of white spaces
@@ -180,7 +182,7 @@ class RobotControllerTest {
 	void penUpTest() {
 		RobotController rc = new RobotController();
 		rc.executeCommands("I 10");		
-		rc.executeCommands("U");
+		rc.executeCommands("u");
 		assertEquals("UP", rc.getPenState());
 	}
 
@@ -321,7 +323,7 @@ class RobotControllerTest {
 	void modifyingFloorWestFacingTest() {
 		RobotController rc = new RobotController();
         rc.executeCommands("I 10");
-        rc.executeCommands("D");
+        rc.executeCommands("d");
         rc.executeCommands("R");//facing east
         rc.executeCommands("M 9");
         rc.executeCommands("L");//facing nord
@@ -350,7 +352,7 @@ class RobotControllerTest {
         rc.executeCommands("I 10");
         rc.executeCommands("D");
         rc.executeCommands("M 4");
-        rc.executeCommands("C");
+        rc.executeCommands("c");
         assertEquals("Position: 0, 4 - Pen: Down - Facing: North\r\n".strip(), ouput.toString().strip());
 	}
 	
