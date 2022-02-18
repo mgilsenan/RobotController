@@ -101,6 +101,15 @@ class RobotControllerTest {
 	}
 
 	@Test
+	void moveCommandOutOfBoudariesTest(){
+		RobotController rc = new RobotController();
+		rc.executeCommands("I 3");
+		rc.executeCommands("M 4");	
+		var expected = "outside the boundaries of the floor, enter a valid number";
+		assertEquals(expected.strip(), ouput.toString().strip());
+	}
+
+	@Test
 	void canMoveForwardTest() {
 		RobotController rc = new RobotController();
 		rc.executeCommands("I 10");		
