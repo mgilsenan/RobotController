@@ -287,13 +287,13 @@ public class RobotController {
     	return facingDirection.toString().toUpperCase();
     }
     
-    public int getXCoord() {
-    	return FloorTrackerRow;
-    }
+    // public int getXCoord() {
+    // 	return FloorTrackerRow;
+    // }
     
-    public int getYCoord() {
-    	return FloorTrackerColumn;
-    }
+    // public int getYCoord() {
+    // 	return FloorTrackerColumn;
+    // }
 
     public void printInstructions() {
         System.out.println("Enter command or enter Q or q to stop the program or enter the following accepted commands"+"\n"
