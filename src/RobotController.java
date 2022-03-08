@@ -58,6 +58,9 @@ public class RobotController {
         else if (command.equals("I") || command.equals("i")){
             intialize(commands);
         }
+        else if (command.equals("Q") || command.equals("q")){
+            System.exit(0);
+        }
         else{
             invalidCommand();
         }
@@ -101,7 +104,6 @@ public class RobotController {
     	}
     }
 
-    //R1
     public boolean canMoveForward(int stepPositions) {
         
         if((FloorTrackerColumn + stepPositions >= floor.length)&&(facingDirection == direction.East)){
@@ -123,7 +125,6 @@ public class RobotController {
         return true;
     }
 
-    //R2
     private void printFloor() {
         for (int i = 0; i < floor.length; i++) {
 
@@ -140,17 +141,14 @@ public class RobotController {
         }
     }
 
-    //R3
     private void penUp() {
     	pen = penState.Up;
     }
 
-    //R4
     private void penDown() {
     	pen = penState.Down;
     }
 
-    //R5
     private void moveRight() {
     	switch (facingDirection) {
 
@@ -175,7 +173,6 @@ public class RobotController {
     	}
     }
 
-    //R6
     private void moveLeft() {
     	switch (facingDirection) {
 
@@ -207,7 +204,6 @@ public class RobotController {
         modifyingCoordinates(stepPositions);
     }
 
-    //R7
     private void modifyingFloor(int stepPositions) {
         if (pen == penState.Down) {
             for (int i = 0; i <= stepPositions; i++) {
@@ -274,7 +270,6 @@ public class RobotController {
         FloorTrackerColumn = 0;
     } 
 
-    //R8
     public void printPosition() {
         System.out.println("Position: "+ FloorTrackerColumn +", " + Math.abs(FloorTrackerRow - floor.length + 1) + " - Pen: " + pen + " - Facing: " + facingDirection);
     }
@@ -286,14 +281,6 @@ public class RobotController {
     public String getFacingDirection() {
     	return facingDirection.toString().toUpperCase();
     }
-    
-    // public int getXCoord() {
-    // 	return FloorTrackerRow;
-    // }
-    
-    // public int getYCoord() {
-    // 	return FloorTrackerColumn;
-    // }
 
     public void printInstructions() {
         System.out.println("Enter command or enter Q or q to stop the program or enter the following accepted commands"+"\n"

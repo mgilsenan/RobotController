@@ -19,7 +19,7 @@ public class Main {
 
             String userInput;
 
-            do
+            while(true)
             {
                 System.out.print("Enter command: ");
 
@@ -27,7 +27,7 @@ public class Main {
                 
                 robotController.executeCommands(userInput);
                 
-            }while(!(userInput.equals("Q")||userInput.equals("q")));
+            }
                 
         }
     
