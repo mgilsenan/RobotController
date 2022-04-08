@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class RobotController {
 
@@ -11,6 +12,7 @@ public class RobotController {
     private direction facingDirection;
     private int FloorTrackerRow;
     private int FloorTrackerColumn;
+    static List<String> history = new ArrayList<>();
 
     public int[][] getFloor() {
         return Arrays.copyOf(floor, floor.length);
@@ -27,18 +29,22 @@ public class RobotController {
         String command = commands[0];
         
         if (command.equals("U")|| command.equals("u")){
+            history.add(command);
             //pen up
             penUp();
         }
         else if (command.equals("D") || command.equals("d")){
+            history.add(command);
             //pen down
             penDown();
         }
         else if (command.equals("R") || command.equals("r")){
+            history.add(command);
             //turn right, if ycoordinate is ymax then can't go 
             moveRight();
         }
         else if (command.equals("L") || command.equals("l")){
+            history.add(command);
             //turn left, if xcoordinate is 0 then can't go 
             moveLeft();
         }
@@ -48,10 +54,12 @@ public class RobotController {
            
         }
         else if (command.equals("P") || command.equals("p")){
+            history.add(command);
             //print
             printFloor();
         }
         else if (command.equals("C") || command.equals("c")){
+            history.add(command);
             //print position and up or down
         	printPosition();
         }
@@ -61,13 +69,24 @@ public class RobotController {
         else if (command.equals("Q") || command.equals("q")){
             System.exit(0);
         }
+        else if (command.equals("H") || command.equals("h")){
+            history.add(command);
+            printHistory();
+        }
         else{
+            history.add(command);
             invalidCommand();
         }
    }
 
+    private void printHistory() {
+        System.out.println("Command History:\n"+String.join("\n", history));
+    }
+
     private void intialize(String[] commands) {
         try {
+            history.add(commands[0]+" "+commands[1]);
+
             initializeFloor(Integer.parseInt(commands[1]));
         } catch (Exception e) {
             System.out.println("Did not enter a value");
@@ -76,7 +95,10 @@ public class RobotController {
 
     private void move(String[] commands) {
         try {
+            history.add(commands[0]+" "+commands[1]);
+
             maneuverRobot(Integer.parseInt(commands[1]));
+            
         } catch (Exception e) {
             System.out.println("Did not enter a value");
         }
@@ -317,7 +339,8 @@ public class RobotController {
         +"[M s|m s] to Move forward s spaces "+"\n"
         +"[P|p] Print the N by N array and display the indices"+"\n"
         +"[C|c] Print current position of the pen and whether it is up or down and its facing direction"+"\n"
-        +"[I n|i n] Initialize the system: The values of the array floor are zeros and the robot is back to [0, 0], pen up and facing north. n size of the array, an integer greater than zero ");
+        +"[I n|i n] Initialize the system: The values of the array floor are zeros and the robot is back to [0, 0], pen up and facing north. n size of the array, an integer greater than zero "
+        +"[H|h] Replay all the commands entered by the user as a history");
     }
 
 }
