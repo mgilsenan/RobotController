@@ -7,7 +7,6 @@ public class RobotController {
 	private enum direction {East, West, North, South}
     private enum penState {Up, Down}
     private int[][] floor;
-    //private Robot robot;
     private penState pen;
     private direction facingDirection;
     private int FloorTrackerRow;
@@ -21,7 +20,6 @@ public class RobotController {
     public RobotController(){
         pen = penState.Up;
         facingDirection = direction.North;
-        //robot = new Robot(0, 0);
     }
 
     public void executeCommands(String userInput){
