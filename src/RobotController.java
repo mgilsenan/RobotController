@@ -126,19 +126,45 @@ public class RobotController {
     }
 
     private void printFloor() {
+        int k = floor.length - 1;
         for (int i = 0; i < floor.length; i++) {
+            
+            if(k < 10){
+                System.out.print(k + "   ");
+            }
+            else {
+                System.out.print(k + "  ");
+            }
+            k--;
 
-            for (int j = 0; j < floor[i].length; j++) {
+            for (int j = 0; j < floor.length; j++) {
                 if(floor[i][j]==1){
-                    System.out.print("* ");
+                    if(j > 10) {
+                        System.out.print("*" + "     ");
+                    }
+                    else{
+                        System.out.print("*" + "       ");
+                    }
                 } 
                 else{
-                    System.out.print("  ");
+                    if(j > 10) {
+                        System.out.print("     ");
+                    }
+                    else{
+                        System.out.print("    ");
+                    }
                 }
 
             }
             System.out.println();
         }
+
+        System.out.print("    ");
+        for(int i = 0; i < floor.length; i++){
+            System.out.print(i + "  ");
+        }
+        System.out.println("");
+        
     }
 
     private void penUp() {
