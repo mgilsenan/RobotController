@@ -78,7 +78,7 @@ public class RobotController {
    }
 
     private void printHistory() {
-        System.out.println("Command History:\n"+String.join("\n", history));
+        System.out.println("Command History:"+String.join("\n", history));
     }
 
     private void intialize(String[] commands) {

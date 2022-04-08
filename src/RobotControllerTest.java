@@ -153,7 +153,7 @@ class RobotControllerTest {
         rc.executeCommands("I 10");
         rc.executeCommands("P");
         String printed = ouput.toString();
-        assertTrue(printed.matches("[\\n\\r ]+"));//string contains only \r \n and spaces (empty floor)
+        assertFalse(printed.contains("*"));//string contains only \r \n and spaces (empty floor)
 	}
 
 	@Test
@@ -169,8 +169,8 @@ class RobotControllerTest {
         for (int i = 0; i < 10; i++)
             lines[i] = lines[i].replaceAll("\\s+", "");//get rid of white spaces
         for (int i = 0; i < 10; i++) {
-            assertEquals('*', lines[0].charAt(i));
-            assertEquals('*', lines[i].charAt(0));
+            assertEquals('*', lines[0].charAt(i+1));
+            assertEquals('*', lines[i].charAt(1));
         }
 	}
 	
@@ -279,7 +279,7 @@ class RobotControllerTest {
         rc.executeCommands("P");
         String lines[] = ouput.toString().split("\\r?\\n");
         for (int i = 0; i < 10; i++)
-            assertEquals('*', lines[i].replaceAll("\\s+","").charAt(1));
+            assertEquals('*', lines[i].replaceAll("\\s+", "").charAt(1));
 	}
 	
 	@Test
@@ -294,7 +294,7 @@ class RobotControllerTest {
         for (int i = 0; i < 10; i++)
             lines[i] = lines[i].replaceAll("\\s+", "");//get rid of white spaces
         for (int i = 1; i < 10; i++)
-            assertEquals('*', lines[9].replaceAll("\\s+", "").charAt(i));
+            assertEquals('*', lines[9].charAt(i));
 	}
 	
 	@Test
@@ -351,5 +351,19 @@ class RobotControllerTest {
         rc.executeCommands("c");
         assertEquals("Position: 0, 4 - Pen: Down - Facing: North\r\n".strip(), ouput.toString().strip());
 	}
+	
+//	@Test
+//	void printHistoryTest() {
+//		RobotController rc = new RobotController();
+//		String[] commands = {"I 10", "D", "M 4", "R", "M 4", "U", "H"};
+//		for (String c : commands) {
+//			rc.executeCommands(c);
+//		}
+//		String lines[] = ouput.toString().split("\\r?\\n");
+//		assertEquals("Command History:", lines[0].strip());
+//		for (int i = 0; i < commands.length; i++) {
+//			assertEquals(commands[i].strip(), lines[i+1].strip());
+//		}
+//	}
 	
 }
