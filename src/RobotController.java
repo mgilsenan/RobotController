@@ -140,18 +140,18 @@ public class RobotController {
             for (int j = 0; j < floor.length; j++) {
                 if(floor[i][j]==1){
                     if(j > 10) {
-                        System.out.print("*" + "     ");
+                        System.out.print("*" + "   ");
                     }
                     else{
-                        System.out.print("*" + "       ");
+                        System.out.print("*" + "  ");
                     }
                 } 
                 else{
                     if(j > 10) {
-                        System.out.print("     ");
+                        System.out.print("    ");
                     }
                     else{
-                        System.out.print("    ");
+                        System.out.print("   ");
                     }
                 }
 
