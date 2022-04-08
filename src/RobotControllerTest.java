@@ -33,7 +33,8 @@ class RobotControllerTest {
         +"[M s|m s] to Move forward s spaces "+"\n"
         +"[P|p] Print the N by N array and display the indices"+"\n"
         +"[C|c] Print current position of the pen and whether it is up or down and its facing direction"+"\n"
-        +"[I n|i n] Initialize the system: The values of the array floor are zeros and the robot is back to [0, 0], pen up and facing north. n size of the array, an integer greater than zero ";
+        +"[I n|i n] Initialize the system: The values of the array floor are zeros and the robot is back to [0, 0], pen up and facing north. n size of the array, an integer greater than zero"+"\n"
+        +"[H|h] Replay all the commands entered by the user as a history";
 		rc.printInstructions();
 		assertEquals(expected.strip(), ouput.toString().strip());
 	}
@@ -278,7 +279,7 @@ class RobotControllerTest {
         rc.executeCommands("P");
         String lines[] = ouput.toString().split("\\r?\\n");
         for (int i = 0; i < 10; i++)
-            assertEquals('*', lines[i].charAt(0));
+            assertEquals('*', lines[i].replaceAll("\\s+","").charAt(1));
 	}
 	
 	@Test
@@ -292,8 +293,8 @@ class RobotControllerTest {
         String lines[] = ouput.toString().split("\\r?\\n");
         for (int i = 0; i < 10; i++)
             lines[i] = lines[i].replaceAll("\\s+", "");//get rid of white spaces
-        for (int i = 0; i < 10; i++)
-            assertEquals('*', lines[9].charAt(i));
+        for (int i = 1; i < 10; i++)
+            assertEquals('*', lines[9].replaceAll("\\s+", "").charAt(i));
 	}
 	
 	@Test

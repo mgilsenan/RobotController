@@ -337,7 +337,7 @@ public class RobotController {
         +"[M s|m s] to Move forward s spaces "+"\n"
         +"[P|p] Print the N by N array and display the indices"+"\n"
         +"[C|c] Print current position of the pen and whether it is up or down and its facing direction"+"\n"
-        +"[I n|i n] Initialize the system: The values of the array floor are zeros and the robot is back to [0, 0], pen up and facing north. n size of the array, an integer greater than zero "
+        +"[I n|i n] Initialize the system: The values of the array floor are zeros and the robot is back to [0, 0], pen up and facing north. n size of the array, an integer greater than zero"+"\n"
         +"[H|h] Replay all the commands entered by the user as a history");
     }
 
