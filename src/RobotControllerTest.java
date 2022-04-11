@@ -69,7 +69,7 @@ class RobotControllerTest {
 	void initializeCommandWithNoValueTest(){
 		RobotController rc = new RobotController();
 		rc.executeCommands("I ");	
-		var expected = "Did not enter a value";
+		var expected = "Did not initialize correctly";
 		assertEquals(expected.strip(), ouput.toString().strip());
 	}
 
@@ -352,18 +352,18 @@ class RobotControllerTest {
         assertEquals("Position: 0, 4 - Pen: Down - Facing: North\r\n".strip(), ouput.toString().strip());
 	}
 	
-//	@Test
-//	void printHistoryTest() {
-//		RobotController rc = new RobotController();
-//		String[] commands = {"I 10", "D", "M 4", "R", "M 4", "U", "H"};
-//		for (String c : commands) {
-//			rc.executeCommands(c);
-//		}
-//		String lines[] = ouput.toString().split("\\r?\\n");
-//		assertEquals("Command History:", lines[0].strip());
-//		for (int i = 0; i < commands.length; i++) {
-//			assertEquals(commands[i].strip(), lines[i+1].strip());
-//		}
-//	}
+	@Test
+	void printHistoryTest() {
+		RobotController rc = new RobotController();
+		String[] commands = {"I 10", "D", "M 4", "R", "M 4", "U", "H"};
+		for (String c : commands) {
+			rc.executeCommands(c);
+		}
+		String lines[] = ouput.toString().split("\\r?\\n");
+		 assertEquals("Command History: I 10", lines[0].strip());
+		for (int i = 1; i < commands.length; i++) {
+			assertEquals(commands[i].strip(), lines[i].strip());
+		}
+	}
 	
 }

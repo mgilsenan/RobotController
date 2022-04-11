@@ -78,7 +78,7 @@ public class RobotController {
    }
 
     private void printHistory() {
-        System.out.println("Command History:"+String.join("\n", history));
+        System.out.println("Command History: "+String.join("\n", history));
     }
 
     private void intialize(String[] commands) {
@@ -87,7 +87,7 @@ public class RobotController {
 
             initializeFloor(Integer.parseInt(commands[1]));
         } catch (Exception e) {
-            System.out.println("Did not enter a value");
+            System.out.println("Did not initialize correctly");
         }
     }
 
